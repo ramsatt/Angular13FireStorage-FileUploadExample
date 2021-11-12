@@ -1,0 +1,37 @@
+<div class="box card">
+  <label>
+    <input
+      type="file"
+      class="text-nowrap text-truncate dropify"
+      (change)="selectFile($event)"
+    />
+  </label>
+  <br>
+  <button
+    class="btn btn-info btn-sm"
+    [disabled]="!selectedFiles"
+    (click)="upload()"
+  >
+    Upload
+  </button>
+
+  <div *ngIf="currentFileUpload" class="progress mt-2">
+    <div
+      class="progress-bar progress-bar-striped"
+      role="progressbar"
+      attr.aria-valuenow="{{ percentage }}"
+      aria-valuemin="0"
+      aria-valuemax="100"
+      [ngStyle]="{ width: percentage + '%' }"
+      [ngClass]="{
+    'bg-success': percentage > 70,
+    'bg-info': percentage > 40 && percentage < 70,
+    'bg-warning': percentage > 20 && percentage < 40,
+    'bg-danger': percentage > 0 && percentage < 20
+    }"
+    >
+      {{ percentage }}%
+    </div>
+  </div>
+
+</div>
